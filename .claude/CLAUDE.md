@@ -1,81 +1,110 @@
-# Claude Skills Repository
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-This repository contains custom Claude skills developed using the TDD methodology from superpowers:writing-skills.
+This repository contains custom Claude skills for specialized workflows. Skills are markdown files with YAML frontmatter that provide procedural guidance to Claude agents.
 
-## Repository Structure
+## Architecture
 
+**Repository Structure:**
 ```
-claude-skills/
-├── skills/
-│   └── generating-frontend-styleguides/
-│       └── SKILL.md
-├── .claude/
-│   ├── settings.local.json
-│   └── CLAUDE.md (this file)
-└── README.md
+skills/                              # All skill files
+  {skill-name}/
+    SKILL.md                        # Main skill file (YAML frontmatter + markdown)
+    [supporting-files]              # Optional: tools, examples, heavy reference
 ```
+
+**Skill File Format:**
+- YAML frontmatter with `name` and `description` fields (max 1024 chars total)
+- Description must start with "Use when..." and describe triggering conditions only
+- Markdown body with workflow, patterns, examples, red flags, and quality checklist
+- Flowcharts (GraphViz dot notation) only for non-obvious decision points
+
+**Key Principle:** Skills are documentation, not code. They guide agent behavior through explicit workflows and anti-patterns.
+
+## Development Commands
+
+### Installing Skills Locally
+
+```bash
+# Install a skill to your local Claude Code instance
+cp -r skills/{skill-name} ~/.claude/skills/
+
+# Verify installation
+ls ~/.claude/skills/{skill-name}
+```
+
+### Testing Skills
+
+Skills use TDD methodology with subagents:
+
+```bash
+# Testing is done via Claude Code Task tool with subagent_type: "general-purpose"
+# See superpowers:writing-skills for full testing methodology
+```
+
+**Testing workflow:**
+1. **RED Phase:** Run pressure scenarios WITHOUT skill to establish baseline behavior
+2. **GREEN Phase:** Write minimal skill addressing baseline failures
+3. **REFACTOR Phase:** Identify and close loopholes through iterative testing
+
+### Git Workflow
+
+```bash
+# Standard commit workflow
+git add skills/{skill-name}/
+git commit -m "Add {skill-name} skill
+
+[Description of skill purpose and key features]
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+
+git push
+```
+
+## Skill Development Methodology
+
+**Required Background:** Must understand `superpowers:writing-skills` skill before creating new skills.
+
+**Core Process (TDD for Documentation):**
+
+1. **Write failing test first** - Run pressure scenario with subagent WITHOUT skill
+2. **Document exact rationalizations** - Capture verbatim how agents cut corners
+3. **Write minimal skill** - Address those specific failures only
+4. **Test with skill present** - Verify agent now complies
+5. **Close loopholes** - Add explicit counters for new rationalizations discovered
+
+**Quality Requirements:**
+- YAML frontmatter: name (letters/numbers/hyphens only), description (starts with "Use when...")
+- Description describes WHEN to use (triggers/symptoms), NOT WHAT skill does (workflow)
+- Flowcharts for non-obvious decisions only (not for reference material or linear steps)
+- Red flags section listing rationalization patterns
+- Common mistakes table
+- Quality checklist for verification
+
+**Anti-Patterns to Avoid:**
+- Creating skills without testing first (violates TDD)
+- Verbose descriptions that summarize workflow (Claude follows description, ignores skill body)
+- Multi-language code examples (one excellent example beats many mediocre ones)
+- Flowcharts with generic labels (step1, helper2) or for linear instructions
+- Skills for one-off solutions or project-specific conventions
 
 ## Skills Inventory
 
 ### generating-frontend-styleguides
 
-**Location:** `skills/generating-frontend-styleguides/SKILL.md`
+**Purpose:** Efficiently create and edit frontend style guides without wasting context on repeated exploration
 
-**Status:** Completed, tested with pressure scenarios
+**Core principle:** Explore once with subagent, document findings permanently to CLAUDE.md, never explore again
 
-**Purpose:** Efficiently create and edit frontend style guides without wasting context
+**Key features:**
+- Distinguishes between creating new vs editing existing style guides
+- Creating: Uses Explore subagent, documents to CLAUDE.md, uses frontend-design skill
+- Editing: Uses CLAUDE.md context ONLY (never re-explores)
+- Asks about design system (shadcn/ui, Material UI, Bootstrap, Tailwind)
+- Asks about fonts (Google Fonts vs system fonts)
+- Creates reusable component functions
 
-**Testing results:**
-- RED phase: Identified baseline failures (time pressure shortcuts, not documenting, skipping Explore)
-- GREEN phase: Skill addresses all baseline failures
-- REFACTOR phase: Added creating vs editing workflow distinction based on user feedback
-
-**Key learnings:**
-- Agents naturally skip documentation under time pressure
-- Re-exploration wastes 50-100x more context than using documented knowledge
-- Need explicit flowchart to distinguish creating new vs editing existing style guides
-
-## Development Methodology
-
-All skills in this repository follow the TDD approach:
-
-1. **RED Phase:** Run pressure scenarios WITHOUT skill, document exact rationalizations
-2. **GREEN Phase:** Write minimal skill addressing those specific failures
-3. **REFACTOR Phase:** Close loopholes discovered during testing
-
-## Files Added
-
-| File | Purpose | Created |
-|------|---------|---------|
-| `skills/generating-frontend-styleguides/SKILL.md` | Main skill file | 2026-01-08 |
-| `README.md` | Repository documentation | 2026-01-08 |
-| `.claude/CLAUDE.md` | Project context (this file) | 2026-01-08 |
-
-## Usage
-
-To use the generating-frontend-styleguides skill:
-
-```bash
-cp -r skills/generating-frontend-styleguides ~/.claude/skills/
-```
-
-The skill will then be available in all Claude Code sessions.
-
-## Testing Approach
-
-Skills are tested with:
-- Baseline scenarios (no skill)
-- Pressure scenarios (time constraints, rushed deliverables)
-- Edge case scenarios (editing vs creating)
-- Compliance verification (agent follows all required steps)
-
-## Quality Standards
-
-- YAML frontmatter max 1024 characters
-- Description starts with "Use when..." and includes triggers
-- Flowcharts only for non-obvious decisions
-- Red flags section for common rationalizations
-- Common mistakes table
-- Quality checklist for verification
+**Critical decision:** If CLAUDE.md has "Frontend Style Guide" section → editing workflow (no exploration)

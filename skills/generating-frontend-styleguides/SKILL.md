@@ -92,8 +92,8 @@ digraph styleguide_creation {
    - Include description of what each provides
 
 2. **Typography:**
-   - "Should we include custom fonts?"
-   - Options: Use Google Fonts, Use system fonts only, User will specify fonts, Other
+   - "Should we include/exclude custom fonts?"
+   - Options: User will specify fonts, Figure it out based on this vibe (user input)
    - If Google Fonts selected, ask which font families
 
 3. **Additional Components (optional):**
@@ -104,7 +104,7 @@ digraph styleguide_creation {
 
 ### Step 2: Launch Explore Subagent
 
-**REQUIRED:** Use Task tool with `subagent_type: "Explore"`.
+**REQUIRED:** Use Task tool with `subagent_type: "Explore"` and only in the frontend/ . Do NOT explore or access any NextJS code or other executable code directories e.g. `node_modules/` or `.next/`
 
 **Never use direct Glob/Grep for codebase exploration.** The Explore agent is 50-100x more context-efficient.
 
@@ -216,6 +216,8 @@ export function Button({
 
 Unless user specifies otherwise, include these common UI components:
 
+Titles, Headers, Text, Headers, Footers
+
 **Form Elements:**
 - Button (primary, secondary, outline, ghost variants)
 - Input (text, email, password, number)
@@ -235,7 +237,6 @@ Unless user specifies otherwise, include these common UI components:
 - Navbar
 - Sidebar
 - Tabs
-- Breadcrumbs
 
 **Feedback:**
 - Alert/Toast
@@ -286,7 +287,6 @@ These thoughts mean you're cutting corners:
 - "I'll assume they want Material UI"
 - "Standard buttons are simple, I'll skip frontend-design"
 - "I don't need to ask about fonts"
-- "I'll document after I create components"
 
 **When Editing:**
 - "Let me re-explore to see what changed"
@@ -306,6 +306,7 @@ These thoughts mean you're cutting corners:
 - `__pycache__/`, `.pytest_cache/`
 - Any installation or executable directories
 - `.git/`
+- `.trunk/`
 
 **Why:** Wastes context, no useful information for style guides.
 
