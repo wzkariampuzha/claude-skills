@@ -108,3 +108,53 @@ git push
 - Creates reusable component functions
 
 **Critical decision:** If CLAUDE.md has "Frontend Style Guide" section → editing workflow (no exploration)
+
+## Publishing & Distribution
+
+### Repository Structure for Public Distribution
+
+This repository is configured as a Claude Code plugin marketplace:
+
+**Marketplace Manifest:** `.claude-plugin/marketplace.json`
+- Defines plugin metadata and versioning
+- Enables one-command installation via `/plugin marketplace add`
+- Schema: https://anthropic.com/claude-code/marketplace.schema.json
+
+**Distribution Channels:**
+1. **GitHub Repository:** https://github.com/wzkariampuzha/claude-skills
+   - Public repo with manual installation support
+   - Tagged releases for version tracking
+
+2. **Community Aggregators:**
+   - Listed in awesome-claude-skills
+   - Auto-indexed by SkillsMP.com
+
+3. **Plugin Marketplace:**
+   - Users add via: `/plugin marketplace add wzkariampuzha/claude-skills`
+   - Install skills via: `/plugin install {skill-name}@wzkariampuzha-claude-skills`
+
+### Adding New Skills to Marketplace
+
+When creating a new skill, update `.claude-plugin/marketplace.json`:
+
+1. Add new plugin object to `plugins` array
+2. Increment version numbers (marketplace + plugin)
+3. Update `source` path to point to new skill directory
+4. Choose appropriate `category` (development, design, productivity, etc.)
+5. Commit changes and create new Git tag
+6. Push tag to GitHub: `git push origin vX.Y.Z`
+
+### Version Management
+
+- Follow semantic versioning (MAJOR.MINOR.PATCH)
+- Marketplace version tracks collection version
+- Individual plugin versions track skill-specific updates
+- Create Git tags for all releases
+
+### No Official Anthropic Registry
+
+**Important:** There is no centralized Anthropic registry for submitting skills. Distribution happens through:
+- Personal GitHub repositories
+- Community aggregators (manual PR submission)
+- Third-party marketplaces (automatic indexing)
+- Plugin marketplace system (self-hosted via marketplace.json)

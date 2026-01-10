@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "wzkariampuzha-claude-skills",
+  "version": "1.0.0",
+  "description": "Custom Claude skills for specialized workflows including frontend style guide generation",
+  "owner": {
+    "name": "wzkariampuzha",
+    "email": "wzkariampuzha@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "generating-frontend-styleguides",
+      "description": "Create comprehensive frontend style guides efficiently without wasting context on repeated exploration",
+      "version": "1.0.0",
+      "author": {
+        "name": "wzkariampuzha",
+        "email": "wzkariampuzha@users.noreply.github.com"
+      },
+      "source": "./skills/generating-frontend-styleguides",
+      "category": "design",
+      "homepage": "https://github.com/wzkariampuzha/claude-skills"
+    }
+  ]
+}

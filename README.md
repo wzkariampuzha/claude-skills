@@ -29,14 +29,31 @@ Custom Claude skills for specialized workflows.
 
 ## Installation
 
-To use these skills with Claude Code:
+### Method 1: Plugin Marketplace (Recommended)
 
-1. Copy the skill directory to your Claude skills folder:
-   ```bash
-   cp -r skills/generating-frontend-styleguides ~/.claude/skills/
-   ```
+Add the marketplace to Claude Code:
+```bash
+/plugin marketplace add wzkariampuzha/claude-skills
+```
 
-2. The skill will be automatically available in your Claude Code sessions.
+Install the skill:
+```bash
+/plugin install generating-frontend-styleguides@wzkariampuzha-claude-skills
+```
+
+### Method 2: Manual Installation
+
+Clone the repository:
+```bash
+git clone https://github.com/wzkariampuzha/claude-skills.git
+```
+
+Copy the skill to your local Claude Code skills directory:
+```bash
+cp -r claude-skills/skills/generating-frontend-styleguides ~/.claude/skills/
+```
+
+The skill will be automatically available in your Claude Code sessions.
 
 ## Development
 
