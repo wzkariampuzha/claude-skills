@@ -120,6 +120,29 @@ This repository is configured as a Claude Code plugin marketplace:
 - Enables one-command installation via `/plugin marketplace add`
 - Schema: https://anthropic.com/claude-code/marketplace.schema.json
 
+### Critical Configuration Rules
+
+**REQUIRED for skills to be discoverable:**
+
+1. **plugin.json is required**: Must exist in `.claude-plugin/` with plugin metadata
+   - Without this file, plugin installation succeeds but skill discovery fails
+   - Contains name, description, version, author, repository, license, keywords
+
+2. **Source must be relative**: Use `"source": "./"` in marketplace.json for local installations to work
+   - Remote URLs (e.g., GitHub raw content) only work for remote-only installations
+   - Breaks local collaborative usage (installing in project directories)
+   - Relative path enables Claude to discover skills from local installation directory
+
+3. **Plugin vs Skill naming**:
+   - **Plugin name**: `wzkariampuzha-claude-skills` (the collection/repository)
+   - **Skill names**: `generating-frontend-styleguides`, etc. (individual skills)
+   - Plugin is the installable unit, skills are auto-discovered within
+
+4. **Skill discovery**: Claude auto-discovers all `skills/*/SKILL.md` files from source path
+   - No need to register each skill in marketplace.json
+   - Add new skills by creating `skills/{skill-name}/SKILL.md`
+   - Skills appear automatically after plugin installation/reload
+
 **Distribution Channels:**
 1. **GitHub Repository:** https://github.com/wzkariampuzha/claude-skills
    - Public repo with manual installation support
@@ -135,14 +158,16 @@ This repository is configured as a Claude Code plugin marketplace:
 
 ### Adding New Skills to Marketplace
 
-When creating a new skill, update `.claude-plugin/marketplace.json`:
+When creating a new skill:
 
-1. Add new plugin object to `plugins` array
-2. Increment version numbers (marketplace + plugin)
-3. Update `source` path to point to new skill directory
-4. Choose appropriate `category` (development, design, productivity, etc.)
+1. Create skill directory: `skills/{new-skill-name}/SKILL.md`
+2. **NO changes to marketplace.json needed** - Skills are auto-discovered from `skills/` directory
+3. Increment version numbers in both `plugin.json` and `marketplace.json`
+4. Update `.claude/CLAUDE.md` Skills Inventory section with new skill documentation
 5. Commit changes and create new Git tag
 6. Push tag to GitHub: `git push origin vX.Y.Z`
+
+**Note:** With the auto-discovery approach, you don't need to register each skill in marketplace.json. Just create the skill file in the `skills/` directory and increment the version numbers.
 
 ### Version Management
 
