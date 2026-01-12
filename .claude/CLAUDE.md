@@ -93,7 +93,7 @@ git push
 
 ## Skills Inventory
 
-### generating-frontend-styleguides
+### frontend-styleguide
 
 **Purpose:** Efficiently create and edit frontend style guides without wasting context on repeated exploration
 
@@ -135,7 +135,7 @@ This repository is configured as a Claude Code plugin marketplace:
 
 3. **Plugin vs Skill naming**:
    - **Plugin name**: `wzkariampuzha-claude-skills` (the collection/repository)
-   - **Skill names**: `generating-frontend-styleguides`, etc. (individual skills)
+   - **Skill names**: `frontend-styleguide`, etc. (individual skills)
    - Plugin is the installable unit, skills are auto-discovered within
 
 4. **Skill discovery**: Claude auto-discovers all `skills/*/SKILL.md` files from source path

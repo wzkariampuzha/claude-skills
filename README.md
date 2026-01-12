@@ -4,9 +4,9 @@ Custom Claude skills for specialized workflows.
 
 ## Skills
 
-### generating-frontend-styleguides
+### frontend-styleguide
 
-**Location:** `skills/generating-frontend-styleguides/SKILL.md`
+**Location:** `skills/frontend-styleguide/SKILL.md`
 
 **Purpose:** Create comprehensive frontend style guides efficiently without wasting context on repeated exploration.
 
@@ -38,7 +38,7 @@ Add the marketplace to Claude Code:
 
 Install the skill:
 ```bash
-/plugin install generating-frontend-styleguides@wzkariampuzha-claude-skills
+/plugin install frontend-styleguide@wzkariampuzha-claude-skills
 ```
 
 ### Method 2: Manual Installation
@@ -50,7 +50,7 @@ git clone https://github.com/wzkariampuzha/claude-skills.git
 
 Copy the skill to your local Claude Code skills directory:
 ```bash
-cp -r claude-skills/skills/generating-frontend-styleguides ~/.claude/skills/
+cp -r claude-skills/skills/frontend-styleguide ~/.claude/skills/
 ```
 
 The skill will be automatically available in your Claude Code sessions.

@@ -1,5 +1,5 @@
 ---
-name: generating-frontend-styleguides
+name: frontend-styleguide
 description: Use when asked to create or edit style guides, design systems, component libraries, or update existing frontend components for web projects
 ---
 
