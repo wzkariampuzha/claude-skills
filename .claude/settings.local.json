@@ -9,7 +9,9 @@
       "Skill(superpowers:systematic-debugging)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nRename skill from generating-frontend-styleguides to frontend-styleguide\n\n- Renamed directory from skills/generating-frontend-styleguides to skills/frontend-styleguide\n- Updated YAML frontmatter name in SKILL.md\n- Updated all references in .claude/CLAUDE.md\n- Updated all references in README.md \\(installation instructions and examples\\)\n\nThis shorter name is more concise and follows standard skill naming conventions.\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)"
     ]
   }
 }
