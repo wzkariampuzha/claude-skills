@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Skill(superpowers:writing-skills)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Skill(systematic-debugging)",
+      "Bash(curl:*)",
+      "Bash(lynx:*)",
+      "Skill(superpowers:systematic-debugging)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
