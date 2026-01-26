@@ -1,7 +1,5 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "wzkariampuzha-claude-skills",
-  "version": "1.0.6",
   "description": "Custom Claude skills for specialized workflows including frontend style guide generation",
   "owner": {
     "name": "wzkariampuzha",
