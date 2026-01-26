@@ -1,13 +1,8 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
 This repository contains custom Claude skills for specialized workflows. Skills are markdown files with YAML frontmatter that provide procedural guidance to Claude agents.
 
 ## Architecture
-
 **Repository Structure:**
 ```
 skills/                              # All skill files
@@ -24,32 +19,6 @@ skills/                              # All skill files
 
 **Key Principle:** Skills are documentation, not code. They guide agent behavior through explicit workflows and anti-patterns.
 
-## Development Commands
-
-### Installing Skills Locally
-
-```bash
-# Install a skill to your local Claude Code instance
-cp -r skills/{skill-name} ~/.claude/skills/
-
-# Verify installation
-ls ~/.claude/skills/{skill-name}
-```
-
-### Testing Skills
-
-Skills use TDD methodology with subagents:
-
-```bash
-# Testing is done via Claude Code Task tool with subagent_type: "general-purpose"
-# See superpowers:writing-skills for full testing methodology
-```
-
-**Testing workflow:**
-1. **RED Phase:** Run pressure scenarios WITHOUT skill to establish baseline behavior
-2. **GREEN Phase:** Write minimal skill addressing baseline failures
-3. **REFACTOR Phase:** Identify and close loopholes through iterative testing
-
 ### Git Workflow
 
 ```bash
@@ -63,71 +32,14 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 
 git push
 ```
-
-## Skill Development Methodology
-
-**Required Background:** Must understand `superpowers:writing-skills` skill before creating new skills.
-
-**Core Process (TDD for Documentation):**
-
-1. **Write failing test first** - Run pressure scenario with subagent WITHOUT skill
-2. **Document exact rationalizations** - Capture verbatim how agents cut corners
-3. **Write minimal skill** - Address those specific failures only
-4. **Test with skill present** - Verify agent now complies
-5. **Close loopholes** - Add explicit counters for new rationalizations discovered
-
-**Quality Requirements:**
-- YAML frontmatter: name (letters/numbers/hyphens only), description (starts with "Use when...")
-- Description describes WHEN to use (triggers/symptoms), NOT WHAT skill does (workflow)
-- Flowcharts for non-obvious decisions only (not for reference material or linear steps)
-- Red flags section listing rationalization patterns
-- Common mistakes table
-- Quality checklist for verification
-
-**Anti-Patterns to Avoid:**
-- Creating skills without testing first (violates TDD)
-- Verbose descriptions that summarize workflow (Claude follows description, ignores skill body)
-- Multi-language code examples (one excellent example beats many mediocre ones)
-- Flowcharts with generic labels (step1, helper2) or for linear instructions
-- Skills for one-off solutions or project-specific conventions
-
 ## Skills Inventory
 
 ### frontend-styleguide
-
-**Purpose:** Efficiently create and edit frontend style guides without wasting context on repeated exploration
-
-**Core principle:** Explore once with subagent, document findings permanently to CLAUDE.md, never explore again
-
-**Key features:**
-- Distinguishes between creating new vs editing existing style guides
-- Creating: Uses Explore subagent, documents to CLAUDE.md, uses frontend-design skill
-- Editing: Uses CLAUDE.md context ONLY (never re-explores)
-- Asks about design system (shadcn/ui, Material UI, Bootstrap, Tailwind)
-- Asks about fonts (Google Fonts vs system fonts)
-- Creates reusable component functions
-
-**Critical decision:** If CLAUDE.md has "Frontend Style Guide" section → editing workflow (no exploration)
+ Efficiently create and edit frontend style guides without wasting context on repeated exploration
 
 ### subagent-test-driven-development
 
-**Purpose:** Manage test execution via test-runner subagents with incremental timeout escalation strategy
-
-**Core principle:** Delegate to test-runner subagents, start with 10s timeout, escalate incrementally as tests pass, never exceed 10-minute hard limit
-
-**Key features:**
-- Incremental timeout escalation: 10s → 20s → 30s → 45s → 60s → 90s → 120s → 180s → 300s → 600s max
-- Wait for subagent reports (never read terminal output directly)
-- Test inclusion verification after each pass
-- User confirmation before expanding test scope
-- Creates fix plan when tests fail (not just listing failures)
-- Hard limit enforcement: 600s absolute maximum
-
-**Critical decisions:**
-- Start with 10s timeout regardless of estimated test duration
-- Ask user before including additional tests, even when user said "all tests"
-- Investigate root cause after 300s if tests keep timing out (don't blindly escalate to 600s)
-- Never use more than 1 Explore agent concurrently
+ Purpose: Manage test execution via test-runner subagents with incremental timeout escalation strategy
 
 ## Publishing & Distribution
 
@@ -165,12 +77,7 @@ This repository is configured as a Claude Code plugin marketplace:
 
 **Distribution Channels:**
 1. **GitHub Repository:** https://github.com/wzkariampuzha/claude-skills
-   - Public repo with manual installation support
    - Tagged releases for version tracking
-
-2. **Community Aggregators:**
-   - Listed in awesome-claude-skills
-   - Auto-indexed by SkillsMP.com
 
 3. **Plugin Marketplace:**
    - Users add via: `/plugin marketplace add wzkariampuzha/claude-skills`
@@ -180,7 +87,7 @@ This repository is configured as a Claude Code plugin marketplace:
 
 **CRITICAL RELEASE PROCESS:**
 
-⚠️ **New skills are NOT discoverable until a tagged release is created!**
+**New skills are NOT discoverable until a tagged release is created!**
 
 The plugin marketplace reads from **tagged releases**, not from the main branch HEAD. If you add a skill and push to main without creating a tag, users will not be able to install it via the marketplace.
 
@@ -198,16 +105,7 @@ The plugin marketplace reads from **tagged releases**, not from the main branch 
 
 **Common mistake:** Committing new skill → pushing to main → forgetting to tag = skill invisible in marketplace
 
-**Verification:** After pushing, wait 5-10 minutes, then run:
-```bash
-/plugin marketplace reload
-/plugin marketplace list  # Should show new version
-```
-
-**Note:** With the auto-discovery approach, you don't need to register each skill in marketplace.json. Just create the skill file in the `skills/` directory, bump version numbers, and create a tagged release.
-
 ### Version Management
-
 - Follow semantic versioning (MAJOR.MINOR.PATCH)
 - Marketplace version tracks collection version
 - Individual plugin versions track skill-specific updates

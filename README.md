@@ -1,6 +1,6 @@
 # Claude Skills Collection
 
-Custom Claude skills for specialized workflows.
+Custom Claude skills for my specialized workflows.
 
 ## Skills
 
@@ -78,20 +78,3 @@ cp -r claude-skills/skills/subagent-test-driven-development ~/.claude/skills/
 ```
 
 The skills will be automatically available in your Claude Code sessions.
-
-## Development
-
-This repository follows the TDD approach to skill development as outlined in the superpowers:writing-skills skill:
-
-1. **RED Phase:** Create pressure scenarios and run baseline tests without the skill
-2. **GREEN Phase:** Write minimal skill addressing baseline failures
-3. **REFACTOR Phase:** Identify and close loopholes through iterative testing
-
-## Contributing
-
-Skills are developed using the writing-skills methodology. Each skill should:
-- Be tested with pressure scenarios before deployment
-- Include flowcharts only for non-obvious decisions
-- Have clear red flags and common mistakes sections
-- Maintain concise, scannable documentation
-- Follow the "explore once, document permanently" principle where applicable
