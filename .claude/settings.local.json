@@ -16,7 +16,10 @@
       "Bash(git commit:*)",
       "Bash(git tag:*)",
       "Bash(echo:*)",
-      "Bash(claude skill list:*)"
+      "Bash(claude skill list:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh api:*)",
+      "Bash(git ls-tree:*)"
     ]
   }
 }
