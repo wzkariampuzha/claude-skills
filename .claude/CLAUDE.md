@@ -109,6 +109,26 @@ git push
 
 **Critical decision:** If CLAUDE.md has "Frontend Style Guide" section → editing workflow (no exploration)
 
+### subagent-test-driven-development
+
+**Purpose:** Manage test execution via test-runner subagents with incremental timeout escalation strategy
+
+**Core principle:** Delegate to test-runner subagents, start with 10s timeout, escalate incrementally as tests pass, never exceed 10-minute hard limit
+
+**Key features:**
+- Incremental timeout escalation: 10s → 20s → 30s → 45s → 60s → 90s → 120s → 180s → 300s → 600s max
+- Wait for subagent reports (never read terminal output directly)
+- Test inclusion verification after each pass
+- User confirmation before expanding test scope
+- Creates fix plan when tests fail (not just listing failures)
+- Hard limit enforcement: 600s absolute maximum
+
+**Critical decisions:**
+- Start with 10s timeout regardless of estimated test duration
+- Ask user before including additional tests, even when user said "all tests"
+- Investigate root cause after 300s if tests keep timing out (don't blindly escalate to 600s)
+- Never use more than 1 Explore agent concurrently
+
 ## Publishing & Distribution
 
 ### Repository Structure for Public Distribution
