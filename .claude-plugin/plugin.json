@@ -1,7 +1,7 @@
 {
   "name": "wzkariampuzha-claude-skills",
   "description": "Custom Claude skills for specialized workflows including frontend style guide generation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": {
     "name": "wzkariampuzha",
     "email": "wzkariampuzha@users.noreply.github.com"

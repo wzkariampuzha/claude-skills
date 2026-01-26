@@ -1,9 +1,9 @@
 ---
-name: subagent-test-driven-development
+name: test-execution-manager
 description: Use when running tests via test-runner subagents - delegates test execution to background agents with incremental timeout escalation
 ---
 
-# Subagent Test-Driven Development
+# Test Execution Manager
 
 ## Overview
 

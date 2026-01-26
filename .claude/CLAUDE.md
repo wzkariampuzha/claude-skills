@@ -37,7 +37,7 @@ git push
 ### frontend-styleguide
  Efficiently create and edit frontend style guides without wasting context on repeated exploration
 
-### subagent-test-driven-development
+### test-execution-manager
 
  Purpose: Manage test execution via test-runner subagents with incremental timeout escalation strategy
 

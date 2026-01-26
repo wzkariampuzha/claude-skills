@@ -27,9 +27,9 @@ Custom Claude skills for my specialized workflows.
 
 **Core principle:** Explore once. Document permanently. Create professionally.
 
-### subagent-test-driven-development
+### test-execution-manager
 
-**Location:** `skills/subagent-test-driven-development/SKILL.md`
+**Location:** `skills/test-execution-manager/SKILL.md`
 
 **Purpose:** Manage test execution via test-runner subagents with incremental timeout escalation strategy.
 
@@ -61,7 +61,7 @@ Add the marketplace to Claude Code:
 Install skills:
 ```bash
 /plugin install frontend-styleguide@wzkariampuzha-claude-skills
-/plugin install subagent-test-driven-development@wzkariampuzha-claude-skills
+/plugin install test-execution-manager@wzkariampuzha-claude-skills
 ```
 
 ### Method 2: Manual Installation
@@ -74,7 +74,7 @@ git clone https://github.com/wzkariampuzha/claude-skills.git
 Copy the skills to your local Claude Code skills directory:
 ```bash
 cp -r claude-skills/skills/frontend-styleguide ~/.claude/skills/
-cp -r claude-skills/skills/subagent-test-driven-development ~/.claude/skills/
+cp -r claude-skills/skills/test-execution-manager ~/.claude/skills/
 ```
 
 The skills will be automatically available in your Claude Code sessions.

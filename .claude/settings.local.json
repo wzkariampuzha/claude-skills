@@ -14,7 +14,9 @@
       "Bash(git push:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd subagent-test-driven-development skill\n\nManages test execution via test-runner subagents with incremental timeout escalation. Starts with 10s timeout and escalates \\(20s→30s→45s→60s→90s→120s→180s→300s→600s max\\) only as tests pass. Enforces 10-minute hard limit, verifies test inclusion, and requires user confirmation before expanding scope.\n\nKey features:\n- Incremental timeout strategy with 10 escalation levels\n- Delegates to test-runner subagents \\(never reads terminal directly\\)\n- Test inclusion verification after each successful pass\n- User confirmation before adding out-of-scope tests\n- Root cause investigation after 300s if tests keep timing out\n- Rationalization table and red flags for common violations\n\nTested with TDD methodology \\(RED-GREEN-REFACTOR\\):\n- RED: Established baseline showing agents calculate single \"optimal\" timeout\n- GREEN: Skill enforces incremental escalation starting at 10s\n- REFACTOR: Added counters for efficiency and auto-include rationalizations\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit:*)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(echo:*)",
+      "Bash(claude skill list:*)"
     ]
   }
 }
