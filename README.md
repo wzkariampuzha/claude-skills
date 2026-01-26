@@ -27,6 +27,28 @@ Custom Claude skills for specialized workflows.
 
 **Core principle:** Explore once. Document permanently. Create professionally.
 
+### subagent-test-driven-development
+
+**Location:** `skills/subagent-test-driven-development/SKILL.md`
+
+**Purpose:** Manage test execution via test-runner subagents with incremental timeout escalation strategy.
+
+**Use when:**
+- Running tests via test-runner subagents
+- Test suites have variable execution times
+- Need to show progress quickly while handling slow tests
+- Working within timeout constraints
+
+**Key features:**
+- Incremental timeout escalation (10s→20s→30s→45s→60s→90s→120s→180s→300s→600s max)
+- Delegates to test-runner subagents (never reads terminal output directly)
+- Test inclusion verification after each pass
+- User confirmation before expanding test scope
+- Creates fix plans when tests fail (not just listing failures)
+- Hard limit enforcement at 600s (10 minutes)
+
+**Core principle:** Start fast. Escalate incrementally. Never exceed limits.
+
 ## Installation
 
 ### Method 1: Plugin Marketplace (Recommended)
@@ -36,9 +58,10 @@ Add the marketplace to Claude Code:
 /plugin marketplace add wzkariampuzha/claude-skills
 ```
 
-Install the skill:
+Install skills:
 ```bash
 /plugin install frontend-styleguide@wzkariampuzha-claude-skills
+/plugin install subagent-test-driven-development@wzkariampuzha-claude-skills
 ```
 
 ### Method 2: Manual Installation
@@ -48,12 +71,13 @@ Clone the repository:
 git clone https://github.com/wzkariampuzha/claude-skills.git
 ```
 
-Copy the skill to your local Claude Code skills directory:
+Copy the skills to your local Claude Code skills directory:
 ```bash
 cp -r claude-skills/skills/frontend-styleguide ~/.claude/skills/
+cp -r claude-skills/skills/subagent-test-driven-development ~/.claude/skills/
 ```
 
-The skill will be automatically available in your Claude Code sessions.
+The skills will be automatically available in your Claude Code sessions.
 
 ## Development
 

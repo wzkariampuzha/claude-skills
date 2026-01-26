@@ -1,7 +1,7 @@
 {
   "name": "wzkariampuzha-claude-skills",
   "description": "Custom Claude skills for specialized workflows including frontend style guide generation",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "author": {
     "name": "wzkariampuzha",
     "email": "wzkariampuzha@users.noreply.github.com"
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/wzkariampuzha/claude-skills",
   "repository": "https://github.com/wzkariampuzha/claude-skills",
   "license": "MIT",
-  "keywords": ["skills", "frontend", "styleguide", "design-system", "components"]
+  "keywords": ["skills", "frontend", "styleguide", "design-system", "components", "testing", "tdd", "test-runner", "subagents"]
 }
