@@ -178,16 +178,33 @@ This repository is configured as a Claude Code plugin marketplace:
 
 ### Adding New Skills to Marketplace
 
-When creating a new skill:
+**CRITICAL RELEASE PROCESS:**
+
+⚠️ **New skills are NOT discoverable until a tagged release is created!**
+
+The plugin marketplace reads from **tagged releases**, not from the main branch HEAD. If you add a skill and push to main without creating a tag, users will not be able to install it via the marketplace.
+
+**Required steps for EVERY new skill release:**
 
 1. Create skill directory: `skills/{new-skill-name}/SKILL.md`
-2. **NO changes to marketplace.json needed** - Skills are auto-discovered from `skills/` directory
-3. Increment version numbers in both `plugin.json` and `marketplace.json`
-4. Update `.claude/CLAUDE.md` Skills Inventory section with new skill documentation
-5. Commit changes and create new Git tag
-6. Push tag to GitHub: `git push origin vX.Y.Z`
+2. Update `.claude/CLAUDE.md` Skills Inventory section with new skill documentation
+3. Update `README.md` with new skill documentation in the Skills section
+4. **BEFORE PUSHING:** Increment version numbers in BOTH files:
+   - `.claude-plugin/marketplace.json` (lines 4 and 14)
+   - `.claude-plugin/plugin.json` (line 4)
+5. Commit changes with descriptive message
+6. **BEFORE PUSHING:** Create annotated Git tag: `git tag -a vX.Y.Z -m "Description"`
+7. Push BOTH commit and tag: `git push origin main && git push origin vX.Y.Z`
 
-**Note:** With the auto-discovery approach, you don't need to register each skill in marketplace.json. Just create the skill file in the `skills/` directory and increment the version numbers.
+**Common mistake:** Committing new skill → pushing to main → forgetting to tag = skill invisible in marketplace
+
+**Verification:** After pushing, wait 5-10 minutes, then run:
+```bash
+/plugin marketplace reload
+/plugin marketplace list  # Should show new version
+```
+
+**Note:** With the auto-discovery approach, you don't need to register each skill in marketplace.json. Just create the skill file in the `skills/` directory, bump version numbers, and create a tagged release.
 
 ### Version Management
 
