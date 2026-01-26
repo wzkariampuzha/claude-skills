@@ -1,6 +1,6 @@
 {
   "name": "wzkariampuzha-claude-skills",
-  "description": "Custom Claude skills for specialized workflows including frontend style guide generation",
+  "description": "Custom Claude skills for specialized workflows",
   "owner": {
     "name": "wzkariampuzha",
     "email": "wzkariampuzha@users.noreply.github.com"
@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "wzkariampuzha-claude-skills",
-      "description": "Custom Claude skills for specialized workflows including frontend style guide generation",
+      "description": "Custom Claude skills for specialized workflows",
       "version": "1.0.6",
       "author": {
         "name": "wzkariampuzha",
