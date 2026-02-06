@@ -34,6 +34,46 @@ Custom Claude skills for my specialized workflows.
 - Creates fix plans when tests fail (not just listing failures)
 - Hard limit enforcement at 600s (10 minutes)
 **Core principle:** Start fast. Escalate incrementally. Never exceed limits.
+
+## Hooks
+
+### ruff-python
+**Location:** `hooks/PostToolUse.ruff-python`
+
+**Purpose:** Automatically run ruff linter and formatter on Python files after editing.
+
+**Use when:**
+- You want automatic Python code formatting
+- You want to catch linting issues immediately
+- You want to maintain consistent Python code style
+
+**Key features:**
+- Runs `ruff check && ruff format` on edited Python files
+- Triggers after Edit or Write tool operations
+- Shows output to agent so they can fix issues
+- Never blocks edits (always exits success)
+- Validates file extension and tool type
+- Helpful error messages if ruff not installed
+
+**Core principle:** Automatic, transparent, never blocking.
+
+**Installation:**
+```bash
+# After installing the plugin via marketplace
+cd ~/.claude/plugins/wzkariampuzha-claude-skills/hooks
+./install-ruff-hook.sh
+
+# Or from cloned repository
+cd claude-skills/hooks
+./install-ruff-hook.sh
+```
+
+See [hooks/README.md](hooks/README.md) for detailed installation and configuration instructions.
+
+**Requirements:**
+- `jq` (JSON parser)
+- `ruff` (Python linter/formatter)
+
 ## Installation
 ### Method 1: Plugin Marketplace (Recommended)
 Add the marketplace to Claude Code:
@@ -45,14 +85,28 @@ Install skills:
 /plugin install frontend-styleguide@wzkariampuzha-claude-skills
 /plugin install test-execution-manager@wzkariampuzha-claude-skills
 ```
+
+Install hooks (optional):
+```bash
+cd ~/.claude/plugins/wzkariampuzha-claude-skills/hooks
+./install-ruff-hook.sh
+```
 ### Method 2: Manual Installation
 Clone the repository:
 ```bash
 git clone https://github.com/wzkariampuzha/claude-skills.git
 ```
-Copy the skills to your local Claude Code skills directory:
+
+**For skills:**
 ```bash
 cp -r claude-skills/skills/frontend-styleguide ~/.claude/skills/
 cp -r claude-skills/skills/test-execution-manager ~/.claude/skills/
 ```
-The skills will be automatically available in your Claude Code sessions.
+
+**For hooks:**
+```bash
+cd claude-skills/hooks
+./install-ruff-hook.sh
+```
+
+The skills and hooks will be automatically available in your Claude Code sessions.
