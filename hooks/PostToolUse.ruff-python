@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# PostToolUse hook: Run ruff on edited Python files
+# Triggers after Edit or Write tool calls
+
+set -euo pipefail
+
+# Read JSON event from stdin
+INPUT=$(cat)
+
+# Extract tool name and file path using jq
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty')
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+# Only run on Edit or Write tools
+if [[ ! "$TOOL_NAME" =~ ^(Edit|Write)$ ]]; then
+  exit 0
+fi
+
+# Validate file path exists and is not empty
+if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
+  exit 0
+fi
+
+# Check if file is Python (extension is .py)
+FILE_EXT="${FILE_PATH##*.}"
+if [ "$FILE_EXT" != "py" ]; then
+  exit 0
+fi
+
+# Check if ruff is installed
+if ! command -v ruff &> /dev/null; then
+  echo "[ruff-hook] Warning: ruff not installed. Install via: brew install ruff" >&2
+  exit 0
+fi
+
+# Run ruff check and format on the file
+echo "[ruff-hook] Running ruff on $(basename "$FILE_PATH")..." >&2
+ruff check "$FILE_PATH" 2>&1 || true
+ruff format "$FILE_PATH" 2>&1 || true
+
+# Always exit success (never block edits)
+exit 0
