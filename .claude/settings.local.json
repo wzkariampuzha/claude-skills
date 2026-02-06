@@ -19,7 +19,10 @@
       "Bash(claude skill list:*)",
       "Bash(gh repo view:*)",
       "Bash(gh api:*)",
-      "Bash(git ls-tree:*)"
+      "Bash(git ls-tree:*)",
+      "Skill(hookify:hookify)",
+      "WebFetch(domain:code.claude.com)",
+      "Bash(chmod:*)"
     ]
   }
 }
