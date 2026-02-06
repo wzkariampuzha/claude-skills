@@ -28,6 +28,17 @@ git push
  Efficiently create and edit frontend style guides without wasting context on repeated exploration
 ### test-execution-manager
  Purpose: Manage test execution via test-runner subagents with incremental timeout escalation strategy
+
+## Hooks Inventory
+
+### ruff-python
+**Location:** `hooks/PostToolUse.ruff-python`
+**Type:** PostToolUse hook
+**Purpose:** Automatically run ruff linter and formatter on Python files after Edit/Write operations
+**Installation:** Run `hooks/install-ruff-hook.sh` to copy to `~/.claude/hooks/`
+**Requirements:** jq, ruff
+**Behavior:** Runs `ruff check && ruff format`, shows output to agent, never blocks edits
+
 ## Publishing & Distribution
 ### Repository Structure for Public Distribution
 This repository is configured as a Claude Code plugin marketplace:
