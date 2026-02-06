@@ -19,13 +19,20 @@ Automatically runs `ruff check && ruff format` on Python files after Edit or Wri
 1. Install the plugin:
    ```bash
    /plugin marketplace add wzkariampuzha/claude-skills
+   ```
+
+   ```bash
    /plugin install wzkariampuzha-claude-skills
    ```
 
-2. Run the installation script:
+2. Navigate to the hooks directory:
    ```bash
-   cd ~/.claude/plugins/wzkariampuzha-claude-skills/hooks
-   ./install-ruff-hook.sh
+   cd ~/.claude/plugins/marketplaces/wzkariampuzha-claude-skills/hooks
+   ```
+
+3. Run the installation script:
+   ```bash
+   sh install-ruff-hook.sh
    ```
 
 ### Method 2: Direct from Repository
@@ -33,12 +40,16 @@ Automatically runs `ruff check && ruff format` on Python files after Edit or Wri
 1. Clone the repository:
    ```bash
    git clone https://github.com/wzkariampuzha/claude-skills.git
+   ```
+
+2. Navigate to the hooks directory:
+   ```bash
    cd claude-skills/hooks
    ```
 
-2. Run the installation script:
+3. Run the installation script:
    ```bash
-   ./install-ruff-hook.sh
+   sh install-ruff-hook.sh
    ```
 
 ### Method 3: Manual Installation

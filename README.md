@@ -58,14 +58,24 @@ Custom Claude skills for my specialized workflows.
 **Core principle:** Automatic, transparent, never blocking.
 
 **Installation:**
-```bash
-# After installing the plugin via marketplace
-cd ~/.claude/plugins/wzkariampuzha-claude-skills/hooks
-./install-ruff-hook.sh
 
-# Or from cloned repository
+After installing the plugin via marketplace:
+```bash
+cd ~/.claude/plugins/marketplaces/wzkariampuzha-claude-skills/hooks
+```
+
+Then run the installer:
+```bash
+sh install-ruff-hook.sh
+```
+
+Or from cloned repository:
+```bash
 cd claude-skills/hooks
-./install-ruff-hook.sh
+```
+
+```bash
+sh install-ruff-hook.sh
 ```
 
 See [hooks/README.md](hooks/README.md) for detailed installation and configuration instructions.
@@ -80,16 +90,23 @@ Add the marketplace to Claude Code:
 ```bash
 /plugin marketplace add wzkariampuzha/claude-skills
 ```
+
 Install skills:
 ```bash
 /plugin install frontend-styleguide@wzkariampuzha-claude-skills
+```
+
+```bash
 /plugin install test-execution-manager@wzkariampuzha-claude-skills
 ```
 
 Install hooks (optional):
 ```bash
-cd ~/.claude/plugins/wzkariampuzha-claude-skills/hooks
-./install-ruff-hook.sh
+cd ~/.claude/plugins/marketplaces/wzkariampuzha-claude-skills/hooks
+```
+
+```bash
+sh install-ruff-hook.sh
 ```
 ### Method 2: Manual Installation
 Clone the repository:
