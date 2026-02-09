@@ -1,7 +1,7 @@
 {
   "name": "wzkariampuzha-claude-skills",
   "description": "Custom Claude skills for specialized workflows",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "wzkariampuzha",
     "email": "wzkariampuzha@users.noreply.github.com"

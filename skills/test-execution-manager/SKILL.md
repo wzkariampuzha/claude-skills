@@ -132,28 +132,13 @@ description: Use when running tests via test-runner subagents - delegates test e
         </completion_types>
       </step>
     </steps>
-    <visual_representation>
-      Ask user about initial timeout
-        ↓
-      Start with chosen timeout (default 10s)
-        ↓
-      Dispatch test-runner subagent
-        ↓
-      Wait for agent report
-        ↓
-      All tests passed? ──no──→ Create fix plan → Done
-        ↓ yes
-      All tests included? ──yes──→ Done
-        ↓ no
-      Ask user about additional tests
-        ↓
-      User wants to include? ──no──→ Done
-        ↓ yes
-      Increase timeout → (loop back to dispatch)
-        ↓
-      Continue: 10s→20s→30s→45s→60s→90s→120s→180s→300s→600s (HARD LIMIT)
-    </visual_representation>
   </workflow>
+  <communication>
+    <guidelines>
+      <guideline>Always include `gtimeout` (NOT timeout) in your command to subagent.</guideline>
+      <guideline>Always include "Do NOT rerun test" & "Do NOT change the timeout value" & "Do NOT run more than this 1 command provided. You need to KILL your process and stop what you are doing if you decide to run a command again" in your instructions to the subagent.</guideline>
+    </guidelines>
+  </communication>
   <incremental_timeout_escalation>
     <strategy>Start small, escalate as tests pass</strategy>
     <timeout_tiers>
@@ -218,6 +203,7 @@ description: Use when running tests via test-runner subagents - delegates test e
       <rule>Do NOT run more than 1 Explore agent concurrently</rule>
       <rule>Do NOT add tests without user confirmation</rule>
       <rule>Do NOT escalate timeout when tests fail</rule>
+      <rule>Do NOT use the same test runner agent to run a test that timed out! you need to stop it!</rule>
     </do_not_rules>
   </critical_rules>
   <test_inclusion_verification>
@@ -313,6 +299,16 @@ description: Use when running tests via test-runner subagents - delegates test e
         6. Specify a custom initial timeout (must be ≤600s)
         The incremental approach often finds results faster.</agent>
         <user>Ok, use incremental</user>
+        <agent>Starting with 10s timeout. Dispatching test-runner subagent...</agent>
+      </conversation>
+    </example>
+    <example id="4">
+      <title>Test-runner agent violates principal</title>
+      <conversation>
+        <user>Run tests with 60s timeout</user>
+        <agent>ok, subagent, run this command with a 60s timeout</agent>
+        <subagent>Running tests with 60s timeout...</subagent>
+        <subagent>(without reporting back) tests all timed out without </subagent>
         <agent>Starting with 10s timeout. Dispatching test-runner subagent...</agent>
       </conversation>
     </example>
